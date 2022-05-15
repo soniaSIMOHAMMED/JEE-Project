@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/products")
+@RequestMapping("api/product")
 public class ProductController {
 
     private ProductService productService;
@@ -31,7 +31,7 @@ public class ProductController {
         return new ResponseEntity<>(this.productService.getProductById(productId), HttpStatus.OK);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public List<ProductDto> getAllProducts() {
         return this.productService.getAllProducts();
     }
@@ -41,7 +41,7 @@ public class ProductController {
         return this.productService.getAllProductsByFragrance(fragrance);
     }
 
-    @GetMapping("/{id}")
+    @DeleteMapping("/{id}")
     public void deleteProduct(@PathVariable(name = "id") long productId) {
         this.productService.deleteProduct(productId);
     }
