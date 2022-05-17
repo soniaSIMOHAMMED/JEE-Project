@@ -10,6 +10,6 @@ public interface ProductService {
     ProductDto updateProduct(long productId, ProductDto product);
     ProductDto getProductById(long productId);
     List<ProductDto> getAllProducts();
-    List<ProductDto> getAllProductsByFragrance(Fragrance fragrance);
+    List<ProductDto> getAllProductsByFragrance(String fragrance);
     void deleteProduct(long productId);
 }

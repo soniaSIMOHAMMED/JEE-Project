@@ -11,19 +11,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/product")
+@RequestMapping("/api/products")
 public class ProductController {
 
     private ProductService productService;
 
-    @PostMapping
-    public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto product) {
-        return new ResponseEntity<>(this.productService.createProduct(product), HttpStatus.CREATED);
+    public ProductController(ProductService productService){
+        this.productService = productService;
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<ProductDto> updateProduct(@PathVariable(name = "id") long productId, @RequestBody ProductDto product) {
-        return new ResponseEntity<>(this.productService.updateProduct(productId, product), HttpStatus.OK);
+    @PostMapping
+    public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto) {
+        return new ResponseEntity<>(this.productService.createProduct(productDto), HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
@@ -31,13 +30,19 @@ public class ProductController {
         return new ResponseEntity<>(this.productService.getProductById(productId), HttpStatus.OK);
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public List<ProductDto> getAllProducts() {
         return this.productService.getAllProducts();
     }
 
-    @GetMapping("/{fragrance}")
-    public List<ProductDto> getAllProductsByFragrance(@PathVariable(name = "fragrance") Fragrance fragrance) {
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ProductDto> updateProduct(@PathVariable(name = "id") long productId, @RequestBody ProductDto productDto) {
+        return new ResponseEntity<>(this.productService.updateProduct(productId, productDto), HttpStatus.OK);
+    }
+
+    @GetMapping("fragrances/{fragrance}")
+    public List<ProductDto> getAllProductsByFragrance(@PathVariable(name = "fragrance") String fragrance) {
         return this.productService.getAllProductsByFragrance(fragrance);
     }
 
@@ -45,4 +50,5 @@ public class ProductController {
     public void deleteProduct(@PathVariable(name = "id") long productId) {
         this.productService.deleteProduct(productId);
     }
+
 }

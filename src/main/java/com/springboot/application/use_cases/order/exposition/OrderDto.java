@@ -8,7 +8,9 @@ import java.util.List;
 @Data
 public class OrderDto {
 
-    private long orderId;
-    private List<Product> products;
+    public Long orderId;
+    public String test;
+
+    //private List<Product> products;
 
 }

@@ -14,11 +14,6 @@ public class ProductDto {
     public String productName;
 
     @NotEmpty(message = "product fragrance should not be null or empty")
-    public Fragrance fragrance;
+    public String fragrance;
 
-    public ProductDto(Long productId, String productName, Fragrance fragrance) {
-        this.productId = productId;
-        this.productName = productName;
-        this.fragrance = fragrance;
-    }
 }

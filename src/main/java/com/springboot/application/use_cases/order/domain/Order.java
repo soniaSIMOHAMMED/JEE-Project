@@ -1,19 +1,29 @@
 package com.springboot.application.use_cases.order.domain;
 
 import com.springboot.application.use_cases.product.domain.Product;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+
 @Entity
-@Table( name = "order")
+@Table( name = "orders")
 public class Order {
 
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
-    private long orderId;
+    private Long orderId;
 
-    @OneToMany(mappedBy = "order")
-    private List<Product> products;
+    @Column(name = "test")
+    private String test;
+
+/*    @OneToMany(mappedBy = "order")
+    private List<Product> products;*/
 
 }

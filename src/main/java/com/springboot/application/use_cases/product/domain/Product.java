@@ -23,9 +23,9 @@ public class Product {
     private String productName;
 
     @Column( name = "fragrance", nullable = false )
-    private String fragrance;
+    private Fragrance fragrance;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+/*    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
-    private Order order;
+    private Order order;*/
 }

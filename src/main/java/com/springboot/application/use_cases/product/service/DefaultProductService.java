@@ -5,14 +5,21 @@ import com.springboot.application.use_cases.product.domain.Product;
 import com.springboot.application.use_cases.product.exposition.ProductDto;
 import com.springboot.application.use_cases.product.infrastructure.ProductRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class DefaultProductService implements ProductService{
 
     private ProductRepository productRepository;
     private ModelMapper modelMapper;
+
+    public DefaultProductService(ProductRepository productRepository, ModelMapper modelMapper) {
+        this.productRepository = productRepository;
+        this.modelMapper = modelMapper;
+    }
 
     @Override
     public ProductDto createProduct(ProductDto productDto) {
@@ -26,7 +33,7 @@ public class DefaultProductService implements ProductService{
         Product product = this.productRepository.getById(productId);
 
         product.setProductName(productDto.getProductName());
-        product.setFragrance(productDto.getFragrance().toString());
+        product.setFragrance(Fragrance.valueOf(productDto.getFragrance()));
 
         Product updatedProduct = this.productRepository.save(product);
 
@@ -46,8 +53,8 @@ public class DefaultProductService implements ProductService{
     }
 
     @Override
-    public List<ProductDto> getAllProductsByFragrance(Fragrance fragrance) {
-        List<Product> products = this.productRepository.findAllByFragrance();
+    public List<ProductDto> getAllProductsByFragrance(String fragrance) {
+        List<Product> products = this.productRepository.findAllByFragrance(Fragrance.valueOf(fragrance));
         return products.stream().map(product -> mapToDto(product)).collect(Collectors.toList());
     }
 
