@@ -23,4 +23,20 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn clean compile
+      
+  
+  deploy: 
+    runs-on: ubuntu-latest
+    steps:
+    - name: executing remote ssh commands
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.AWS_HOST_DNS }}
+        username: ${{ secrets.AWS_USERNAME }}
+        key: ${{ secrets.AWS_SSH_KEY }}
+        port: ${{ secrets.AWS_PORT }}
+        source: ./
+        target: ${{ secrets.AWS_DIR_TARGET }} 
+        
+      
 
