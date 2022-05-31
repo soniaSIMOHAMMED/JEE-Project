@@ -28,6 +28,7 @@ jobs:
   deploy: 
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v1
     - name: executing remote ssh commands
       uses: appleboy/scp-action@master
       with:
