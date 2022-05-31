@@ -1,5 +1,9 @@
 include:
-  - template: AWS/CF-Provision-and-Deploy-EC2.gitlab-ci.yml
+  - template: Auto-DevOps.gitlab-ci.yml
+
+variables:
+  AUTO_DEVOPS_PLATFORM_TARGET: EC2
+  
 image: maven:latest
 stages:          # List of stages for jobs, and their order of execution
   - build
