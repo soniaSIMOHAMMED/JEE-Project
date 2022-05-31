@@ -1,3 +1,5 @@
+include:
+  - template: AWS/CF-Provision-and-Deploy-EC2.gitlab-ci.yml
 image: maven:latest
 stages:          # List of stages for jobs, and their order of execution
   - build
@@ -24,5 +26,5 @@ build-job:
     - main
     - merge_requests
 
-include:
-  - template: AWS/CF-Provision-and-Deploy-EC2.gitlab-ci.yml
+
+
