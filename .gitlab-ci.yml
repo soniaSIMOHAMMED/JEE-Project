@@ -25,4 +25,4 @@ build-job:
     - merge_requests
 
 include:
-  - template: CF-Provision-and-Deploy-EC2.gitlab-ci.yml
+  - template: AWS/CF-Provision-and-Deploy-EC2.gitlab-ci.yml
