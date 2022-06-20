@@ -16,9 +16,6 @@ public class UserDto {
     @NotEmpty(message = "lastname should not be null or empty")
     public String lastname;
 
-    @NotEmpty(message = "age should not be null or empty")
-    public String age;
-
     @NotEmpty(message = "email should not be null or empty")
     @Email
     public String email;
