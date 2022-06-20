@@ -8,7 +8,7 @@ import javax.validation.constraints.NotEmpty;
 @Data
 public class UserDto {
 
-    public Long userId;
+    public Long id;
 
     @NotEmpty(message = "firstname should not be null or empty")
     public String firstname;
